@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:serene_space_final/pages/index.dart';
 
 import 'pages/colors.dart' as color;
 import 'pages/login.dart';
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LoginPage(),
+      home: IndexPage(),
     );
   }
 }
