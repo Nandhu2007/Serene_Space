@@ -1,4 +1,6 @@
+import 'package:chat_gpt_sdk/chat_gpt_sdk.dart';
 import 'package:flutter/material.dart';
+import 'package:serene_space_final/pages/chatscreen.dart';
 import 'package:serene_space_final/pages/index.dart';
 
 import 'pages/colors.dart' as color;
@@ -16,7 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: IndexPage(),
+      home: ChatScreen(),
     );
   }
 }
