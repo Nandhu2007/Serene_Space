@@ -107,7 +107,7 @@ class IndexPage extends StatelessWidget {
                                 padding: EdgeInsets.fromLTRB(50, 0, 0, 0),
                                 child: ElevatedButton(
                                     style: ElevatedButton.styleFrom(
-                                        primary: Colors.black),
+                                        primary: Colors.white),
                                     onPressed: () {},
                                     child: Text(""))),
                           ],
