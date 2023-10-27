@@ -24,7 +24,7 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   void initState() {
     openAI = OpenAI.instance
-        .build(token: "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");
+        .build(token: "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");
     super.initState();
   }
 
@@ -42,7 +42,7 @@ class _ChatScreenState extends State<ChatScreen> {
 
     if (resp!.choices.isNotEmpty) {
       setState(() {
-        _conversations.add(Chat(resp.choices.last.text, false));
+        _conversations.add(Chat(resp.choices.last.text.trim(), false));
       });
     }
   }
@@ -68,6 +68,9 @@ class _ChatScreenState extends State<ChatScreen> {
                   Expanded(
                       child: TextField(
                     controller: _controller,
+                       onSubmitted: (value) {
+                          send();
+                        },
                     decoration: InputDecoration(hintText: "Type Here..."),
                   )),
                   IconButton(onPressed: send, icon: Icon(Icons.send))
