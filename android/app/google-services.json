@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "523431703864",
+    "project_id": "serenespace-6ff5c",
+    "storage_bucket": "serenespace-6ff5c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:523431703864:android:48d656b6d92a22ab2bbdcd",
+        "android_client_info": {
+          "package_name": "com.example.serene_space_final"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWzccRAYeHoNl71NV5-GMCM_K_j-v9FCg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
