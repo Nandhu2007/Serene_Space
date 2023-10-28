@@ -2,7 +2,6 @@ import 'package:chat_gpt_sdk/chat_gpt_sdk.dart';
 import 'package:flutter/material.dart';
 import 'package:serene_space_final/pages/chatscreen.dart';
 import 'package:serene_space_final/pages/home.dart';
-import 'package:serene_space_final/pages/index1.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:firebase_auth/firebase_auth.dart';

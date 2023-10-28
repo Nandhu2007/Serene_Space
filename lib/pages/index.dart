@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:serene_space_final/pages/home.dart';
+import 'package:serene_space_final/pages/quiz.dart';
 import 'package:serene_space_final/pages/register_page.dart';
 import 'colors.dart' as color;
 
@@ -80,7 +81,14 @@ class _IndexPageState extends State<IndexPage> {
                                         child: ElevatedButton(
                                             style: ElevatedButton.styleFrom(
                                                 primary: Colors.white),
-                                            onPressed: () {},
+                                            onPressed: () {
+                                              Navigator.of(context).push(
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      QuizScreen(),
+                                                ),
+                                              );
+                                            },
                                             child: Text(""))),
                                   ],
                                 )),
@@ -120,7 +128,7 @@ class _IndexPageState extends State<IndexPage> {
                                               Navigator.of(context).push(
                                                 MaterialPageRoute(
                                                   builder: (context) =>
-                                                      HomePage(),
+                                                      QuizScreen(),
                                                 ),
                                               );
                                             },
