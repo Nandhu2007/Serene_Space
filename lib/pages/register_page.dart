@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:serene_space_final/pages/login.dart';
 import 'package:serene_space_final/pages/index.dart';
 import 'package:serene_space_final/pages/register_page.dart';
 import 'package:serene_space_final/pages/validator.dart';
@@ -8,26 +9,24 @@ import 'colors.dart' as color;
 import 'firebase_auth.dart';
 
 
-
-
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key});
 
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _RegisterPageState createState() => _RegisterPageState();
 }
 
-
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
+  TextEditingController nameController = TextEditingController();
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  final _focusName = FocusNode();
   final _focusEmail = FocusNode();
   final _focusPassword = FocusNode();
   bool _isProcessing = false;
 
-
-  Future<FirebaseApp> initializeFirebase() async {
+  Future<FirebaseApp> _initializeFirebase() async {
     FirebaseApp firebaseApp = await Firebase.initializeApp();
 
     User? user = FirebaseAuth.instance.currentUser;
@@ -45,13 +44,12 @@ class _LoginPageState extends State<LoginPage> {
     return firebaseApp;
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: color.AppColor.homePageBackground,
+      backgroundColor: color.AppColor.homePageBackground,
       body: FutureBuilder(
-        future: initializeFirebase(),
+        future: _initializeFirebase(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             return Padding(
@@ -74,6 +72,30 @@ class _LoginPageState extends State<LoginPage> {
                     key: _formKey,
                     child: Column(
                       children: <Widget>[
+                        TextFormField(
+                          controller: nameController,
+                          focusNode: _focusName,
+                          textInputAction: TextInputAction.next,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) return 'Please enter some text';
+                            return Validator.validateName(name: value);
+                          },
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.white,
+                            hintText: "Name",
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.white),
+                            ),
+                            errorBorder: UnderlineInputBorder(
+                              borderRadius: BorderRadius.circular(6.0),
+                              borderSide: BorderSide(
+                                color: Colors.red,
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 8.0),
                         TextFormField(
                           controller: usernameController,
                           focusNode: _focusEmail,
@@ -146,17 +168,16 @@ class _LoginPageState extends State<LoginPage> {
                                       _isProcessing = true;
                                     });
 
-                                    User? user = await FireAuth.signInUsingEmailPassword(
-                                      email: usernameController.text,
-                                      password: passwordController.text,
-                                      context: context
+                                    User? user = await FireAuth.registerUsingEmailPassword(
+                                        email: usernameController.text,
+                                        password: passwordController.text,
+                                        name: nameController.text
                                     );
-
 
                                     setState(() {
                                       _isProcessing = false;
                                     });
-                                    print(user == null);
+
                                     if (user != null) {
                                       Navigator.of(context)
                                           .pushReplacement(
@@ -169,7 +190,7 @@ class _LoginPageState extends State<LoginPage> {
                                   }
                                 },
                                 child: Text(
-                                  'Sign In',
+                                  'Sign Up',
                                   style: TextStyle(color: Colors.white),
                                 ),
                               ),
@@ -181,12 +202,12 @@ class _LoginPageState extends State<LoginPage> {
                                   Navigator.of(context).push(
                                     MaterialPageRoute(
                                       builder: (context) =>
-                                          RegisterPage(),
+                                          LoginPage(),
                                     ),
                                   );
                                 },
                                 child: Text(
-                                  'Register',
+                                  'Sign in',
                                   style: TextStyle(color: Colors.white),
                                 ),
                               ),
@@ -208,6 +229,4 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   } //widget
-}//class
-
-
+}
