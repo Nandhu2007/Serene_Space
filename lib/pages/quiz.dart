@@ -1,12 +1,8 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:serene_space_final/pages/home.dart';
-import 'package:serene_space_final/pages/quiz.dart';
-import 'package:serene_space_final/pages/register_page.dart';
 import 'colors.dart' as color;
 
-import 'firebase_auth.dart';
-import 'login.dart';
+import 'httpclient.dart';
+import 'user.dart';
 
 class MyApp extends StatelessWidget {
   @override
@@ -172,6 +168,8 @@ class ScoreScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     int totalScore = answers.reduce((value, element) => value + element);
+    var http = HTTP();
+    http.createUser(QUser(name:'admin1@gmail.com',score: totalScore));
 
     return Scaffold(
       appBar: AppBar(

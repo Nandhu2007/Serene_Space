@@ -1,18 +1,9 @@
-import 'package:chat_gpt_sdk/chat_gpt_sdk.dart';
 import 'package:flutter/material.dart';
-import 'package:serene_space_final/pages/chatscreen.dart';
-import 'package:serene_space_final/pages/home.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'pages/colors.dart' as color;
 
-
-// FirebaseAuth auth = FirebaseAuth.instance;
-
-
-import 'package:flutter/material.dart';
 import 'pages/login.dart';
+
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -26,13 +17,19 @@ Future<void> main() async {
       measurementId: 'G-PLQMSSQ708',
     )
   );
+
   runApp(MyApp());
 }
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
+
+
   @override
   Widget build(BuildContext context) {
+
+
+
     return MaterialApp(
       title: 'Serene Space',
       debugShowCheckedModeBanner: false,
